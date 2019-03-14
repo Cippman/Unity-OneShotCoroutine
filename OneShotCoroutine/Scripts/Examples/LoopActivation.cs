@@ -1,20 +1,40 @@
-﻿using UnityEngine;
+﻿/*
+ *  Author: Alessandro Salani (Cippman)
+ */
+
+using UnityEngine;
 using CippSharp;
 
 public class LoopActivation : MonoBehaviour
 {
+    //Debug purpose only
+    public bool showOneShotCoroutine = false;
+    
+    private readonly WaitForSeconds waitOneSecond = new WaitForSeconds(1);
 
-    WaitForSeconds oneSecondWait = new WaitForSeconds(1);
-
-    void Start()
+    private void Start()
     {
         ChangeStatus();
     }
 
-    void ChangeStatus()
+    private void ChangeStatus()
     {
         gameObject.SetActive(!gameObject.activeSelf);
-        OneShotCoroutine.PlayDelayedAction(() => ChangeStatus(), oneSecondWait);
+        
+        //Debug purpose only
+        if (showOneShotCoroutine)
+        {
+            OneShotCoroutine.useEmptyNames = false;
+            OneShotCoroutine.hiddenInHierarchy = false;
+        }
+        
+        OneShotCoroutine.PlayDelayedAction(ChangeStatus, waitOneSecond);
+        
+        //Debug purpose only
+        if (showOneShotCoroutine)
+        {
+            OneShotCoroutine.useEmptyNames = true;
+            OneShotCoroutine.hiddenInHierarchy = true;
+        }
     }
-
 }

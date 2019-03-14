@@ -1,11 +1,22 @@
-﻿using UnityEngine;
+﻿/*
+ *  Author: Alessandro Salani (Cippman)
+ */
+
+using System.Collections;
+using UnityEngine;
 using CippSharp;
 
 public class AutoActivate : MonoBehaviour
 {
-    void Start()
+    private void Start()
     {
-        OneShotCoroutine.PlayDelayedAction(() => gameObject.SetActive(true), new WaitForSeconds(5));
         gameObject.SetActive(false);
+        OneShotCoroutine.PlayCoroutine(SelfActivate());
+    }
+
+    private IEnumerator SelfActivate()
+    {
+        yield return new WaitForSeconds(5.0f);
+        gameObject.SetActive(true);
     }
 }

@@ -1,50 +1,119 @@
-﻿/// <summary>
-/// One shot coroutine.
-/// 
-/// Is a simple script that allows to launch coroutine as "one shot" as for audio sources :) 
-/// 
-///
-/// </summary>
-using UnityEngine;
-using UnityEngine.Events;
-using System.Collections;
+﻿/*
+ *  Author: Alessandro Salani (Cippman)
+ */
 
+using System;
+using UnityEngine;
+using System.Collections;
 using Object = UnityEngine.Object;
 
 namespace CippSharp
 {
     #pragma warning disable 0429
+    /// <summary>
+    /// One Shot Coroutine. 
+    /// Is a simple script that allows to launch coroutine as "one shot" as for audio sources
+    /// </summary>
     [AddComponentMenu("")]
+    [DisallowMultipleComponent]
     public class OneShotCoroutine : MonoBehaviour
     {
-        //it generates garbage collection if setted to false
-        const bool dontUsePrettyNames = true;
+        #region Debug
 
-        //just for debug of if feel better if these are shown in hierarchy and inspector even for few seconds
-        #if UNITY_EDITOR
-        const bool hidden = true;
-        const HideFlags underTheHoodFlags = HideFlags.HideInHierarchy | HideFlags.HideInInspector;
-        #endif
+        public static bool useEmptyNames = true;
+        public static bool hiddenInHierarchy = true;
+        
+        #endregion
+        
+#if UNITY_EDITOR
+        private const HideFlags underTheHoodFlags = HideFlags.HideInHierarchy | HideFlags.HideInInspector;
+#endif
+        
+        #region Coroutines
 
-        public void LaunchCoro(IEnumerator coro)
+        /// <summary>
+        /// Start a coroutine on a new gameObject
+        /// </summary>
+        /// <returns></returns>
+        /// <param name="coroutine"></param>
+        public static OneShotCoroutine PlayCoroutine(IEnumerator coroutine)
         {
-            StartCoroutine(Coro(coro));
+#if NET_4_6
+            string coroutineName = (useEmptyNames) ? string.Empty : $"Coroutine: {coroutine.ToString()}";
+#else
+            string coroutineName = (useEmptyNames) ? string.Empty : string.Format("Coro: {0}", coro.ToString());
+#endif
+            GameObject coroutinePlayer = new GameObject(coroutineName);
+#if UNITY_EDITOR
+            if (hiddenInHierarchy)
+            {
+                coroutinePlayer.hideFlags = underTheHoodFlags;
+            }
+#endif
+            OneShotCoroutine oneShotCoroutineComponent = coroutinePlayer.AddComponent<OneShotCoroutine>();
+            oneShotCoroutineComponent.LaunchCoroutine(coroutine);
+            return oneShotCoroutineComponent;
         }
-
-        IEnumerator Coro(IEnumerator coro)
+        
+        /// <summary>
+        /// Launch the passed coroutine in a coroutine.
+        /// </summary>
+        /// <param name="coroutine"></param>
+        public void LaunchCoroutine(IEnumerator coroutine)
         {
-            yield return StartCoroutine(coro);
+            StartCoroutine(CoroutinePlayer(coroutine));
+        }
+        
+        private IEnumerator CoroutinePlayer(IEnumerator coroutine)
+        {
+            yield return StartCoroutine(coroutine);
 
             Destroy(this.gameObject);
+            
+            yield break;
         }
+        
+        #endregion
 
+        #region Delayed Action (Type 0)
 
-        public void LaunchDelayedAction(UnityAction action, WaitForSeconds delay)
+        /// <summary>
+        /// Invokes an action after the specified time with a coroutine on a new GameObject.
+        /// </summary>
+        /// <returns></returns>
+        /// <param name="action"></param>
+        /// <param name="delay"></param>
+        public static OneShotCoroutine PlayDelayedAction(Action action, WaitForSeconds delay)
         {
-            StartCoroutine(DelayedAction_Coro(action, delay));
+#if NET_4_6
+            string actionName = (useEmptyNames) ? string.Empty : $"Action: {action.ToString()}";
+#else
+            string actionName = (useEmptyNames) ? string.Empty : string.Format("Action: {0}", action.ToString());
+#endif
+            GameObject coroutinePlayer = new GameObject(actionName);
+#if UNITY_EDITOR
+            if (hiddenInHierarchy)
+            {
+                coroutinePlayer.hideFlags = underTheHoodFlags;
+            }
+#endif
+            OneShotCoroutine oneShotCoroutineComponent = coroutinePlayer.AddComponent<OneShotCoroutine>();
+            oneShotCoroutineComponent.LaunchDelayedAction(action, delay);
+           
+            return oneShotCoroutineComponent;
+        }
+        
+        /// <summary>
+        /// Starts a coroutine that invokes an action after the specified time
+        /// </summary>
+        /// <param name="action"></param>
+        /// <param name="delay"></param>
+        public void LaunchDelayedAction(Action action, WaitForSeconds delay)
+        {
+            StartCoroutine(DelayedActionCoroutine(action, delay));
         }
 
-        IEnumerator DelayedAction_Coro(UnityAction action, WaitForSeconds delay)
+        private IEnumerator DelayedActionCoroutine(Action action, WaitForSeconds delay)
         {
             yield return delay;
             if (action != null)
@@ -55,12 +124,51 @@ namespace CippSharp
             Destroy(this.gameObject);
         }
 
-        public void LaunchDelayedAction<T>(T reference, UnityAction<T> action, WaitForSeconds delay) where T : Object
+        #endregion
+        
+        #region Delayed Action (Type 1)
+     
+        /// <summary>
+        /// Invokes an action after the specified time with a coroutine on a new GameObject.
+        /// </summary>
+        /// <returns></returns>
+        /// <param name="reference">a reference.</param>
+        /// <param name="action"></param>
+        /// <param name="delay"></param>
+        /// <typeparam name="T"></typeparam>
+        public static OneShotCoroutine PlayDelayedAction<T>(T reference, Action<T> action, WaitForSeconds delay) where T : Object
         {
-            StartCoroutine(DelayedAction_Coro<T>(reference, action, delay));
+#if NET_4_6
+            string actionName = (useEmptyNames) ? string.Empty : $"Action: {action.ToString()}";
+#else
+            string actionName = (useEmptyNames) ? string.Empty : string.Format("Action: {0}", action.ToString());
+#endif
+            
+            GameObject coroutinePlayer = new GameObject(actionName);
+#if UNITY_EDITOR
+            if (hiddenInHierarchy)
+            {
+                coroutinePlayer.hideFlags = underTheHoodFlags;
+            }
+#endif
+            OneShotCoroutine oneShotCoroutineComponent = coroutinePlayer.AddComponent<OneShotCoroutine>();
+            oneShotCoroutineComponent.LaunchDelayedAction<T>(reference, action, delay);
+
+            return oneShotCoroutineComponent;
         }
 
-        IEnumerator DelayedAction_Coro<T>(T reference, UnityAction<T> action, WaitForSeconds delay) where T : Object
+        /// <summary>
+        /// Starts a coroutine that invokes an action after the specified time with the passed reference.
+        /// </summary>
+        /// <param name="reference"></param>
+        /// <param name="action"></param>
+        /// <param name="delay"></param>
+        public void LaunchDelayedAction<T>(T reference, Action<T> action, WaitForSeconds delay) where T : Object
+        {
+            StartCoroutine(DelayedActionCoroutine<T>(reference, action, delay));
+        }
+
+        private IEnumerator DelayedActionCoroutine<T>(T reference, Action<T> action, WaitForSeconds delay) where T : Object
         {
             yield return delay;
             if (action != null)
@@ -71,84 +179,11 @@ namespace CippSharp
             Destroy(this.gameObject);
         }
 
+        #endregion
 
-        void OnDestroy()
+        private void OnDestroy()
         {
             StopAllCoroutines();
-        }
-
-
-        /// <summary>
-        /// It allows you to launch a coroutine
-        /// </summary>
-        /// <returns>The coro.</returns>
-        /// <param name="coro">Coro.</param>
-        public static OneShotCoroutine PlayCoro(IEnumerator coro)
-        {
-
-            var coroName = (dontUsePrettyNames) ? string.Empty : string.Format("Coro: {0}", coro.ToString());
-            var coroGameObject = new GameObject(coroName);
-            #if UNITY_EDITOR
-            if (hidden)
-            {
-                coroGameObject.hideFlags = underTheHoodFlags;
-            }
-            #endif
-           
-            var coroComponent = coroGameObject.AddComponent<OneShotCoroutine>();
-            coroComponent.LaunchCoro(coro);
-           
-            return coroComponent;
-        }
-
-        /// <summary>
-        /// It allows you to launch a delayed action.
-        /// </summary>
-        /// <returns>The delayed action.</returns>
-        /// <param name="action">Action.</param>
-        /// <param name="delay">Delay.</param>
-        public static OneShotCoroutine PlayDelayedAction(UnityAction action, WaitForSeconds delay)
-        {
-
-            var coroName = (dontUsePrettyNames) ? string.Empty : string.Format("Coro: {0}", action.ToString());
-            var coroGameObject = new GameObject(coroName);
-            #if UNITY_EDITOR
-            if (hidden)
-            {
-                coroGameObject.hideFlags = underTheHoodFlags;
-            }
-            #endif
-           
-            var coroComponent = coroGameObject.AddComponent<OneShotCoroutine>();
-            coroComponent.LaunchDelayedAction(action, delay);
-           
-            return coroComponent;
-        }
-
-
-        /// <summary>
-        /// It allows you to launch a delayed action with ''reference''.
-        /// </summary>
-        /// <returns>The delayed action.</returns>
-        /// <param name="reference">Reference.</param>
-        /// <param name="action">Action.</param>
-        /// <param name="delay">Delay.</param>
-        /// <typeparam name="T">The 1st type parameter.</typeparam>
-        public static OneShotCoroutine PlayDelayedAction<T>(T reference, UnityAction<T> action, WaitForSeconds delay) where T : Object
-        {
-
-            var coroName = (dontUsePrettyNames) ? string.Empty : string.Format("Coro: {0}:{1}", reference.name.ToString(), action.ToString());
-            var coroGameObject = new GameObject(coroName);
-            #if UNITY_EDITOR
-            if (hidden)
-            {
-                coroGameObject.hideFlags = underTheHoodFlags;
-            }
-            #endif
-            var coroComponent = coroGameObject.AddComponent<OneShotCoroutine>();
-            coroComponent.LaunchDelayedAction<T>(reference, action, delay);
-
-            return coroComponent;
         }
     }
     #pragma warning restore 0429
