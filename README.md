@@ -1,10 +1,12 @@
 # Unity-OneShotCoroutine
-OneShotCoroutine
+OneShotCoroutine.cs
 
-Notes: 
-1) I'm not sure how much OneShotCoroutine costs on performances, but at least to implement fast-behaviour logics (prototyping or similar cases) it is really useful.
-2)  Const properties inside of OneShotCoroutine should be edited manually to see effects.
+### Purpose: 
+Creates a self-detroyable gameObject with a monobehaviour on it that run a coroutine or a delayed action.
+This is useful and helpful if you want to realize some transitions via scripting that may
+include the self-deactivation of an object: unity doesn't allow to run coroutines on un-active
+gameObjects so this is the "best" plug 'n' play solution I've found.
 
-Example Usage: 
-1) you need a gameobject that active and deactivate itselft each tot time,  but you don't want to create an external reference because unity doesn't play coroutines on gameObjects that are inactive? Done.
-2) You'd like to ''invoke'' an action after a specific amount of time? Done.
+### Description:
+This repository comes with the main script OneShotCoroutine.cs two examples of in-code usage of this
+class and a scene.
