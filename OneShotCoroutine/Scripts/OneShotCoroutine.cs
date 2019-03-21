@@ -12,7 +12,7 @@ namespace CippSharp
     #pragma warning disable 0429
     /// <summary>
     /// One Shot Coroutine. 
-    /// Is a simple script that allows to launch coroutine as "one shot" as for audio sources
+    /// Is a simple script that allows to launch coroutine as "one shot" as for audio sources. 
     /// </summary>
     [AddComponentMenu("")]
     [DisallowMultipleComponent]
@@ -41,7 +41,7 @@ namespace CippSharp
 #if NET_4_6
             string coroutineName = (useEmptyNames) ? string.Empty : $"Coroutine: {coroutine.ToString()}";
 #else
-            string coroutineName = (useEmptyNames) ? string.Empty : string.Format("Coro: {0}", coro.ToString());
+            string coroutineName = (useEmptyNames) ? string.Empty : string.Format("Coro: {0}", coroutine.ToString());
 #endif
             GameObject coroutinePlayer = new GameObject(coroutineName);
 #if UNITY_EDITOR

@@ -8,6 +8,8 @@ using CippSharp;
 
 public class AutoActivate : MonoBehaviour
 {
+    [TextArea(1, 5)] public string notes = "";
+    
     private void Start()
     {
         gameObject.SetActive(false);

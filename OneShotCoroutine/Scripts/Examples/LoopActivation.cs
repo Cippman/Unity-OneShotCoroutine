@@ -7,6 +7,9 @@ using CippSharp;
 
 public class LoopActivation : MonoBehaviour
 {
+    [TextArea(1, 5)] public string notes = "";
+    
+    [Space(5)]
     //Debug purpose only
     public bool showOneShotCoroutine = false;
     
