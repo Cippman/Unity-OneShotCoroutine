@@ -181,6 +181,14 @@ namespace CippSharp
 
         #endregion
 
+        /// <summary>
+        /// Stop this OneShotCoroutine.
+        /// </summary>
+        public void Stop()
+        {
+            Destroy(this.gameObject);
+        }
+
         private void OnDestroy()
         {
             StopAllCoroutines();

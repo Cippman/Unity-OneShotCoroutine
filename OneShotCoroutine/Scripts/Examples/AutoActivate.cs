@@ -8,17 +8,21 @@ using CippSharp;
 
 public class AutoActivate : MonoBehaviour
 {
-    [TextArea(1, 5)] public string notes = "";
+    [TextArea(1, 7)] public string notes = "";
+
+    [Space(5)]
+    [Tooltip("The delay before activation.")]
+    public float delay = 5.0f;
     
     private void Start()
     {
         gameObject.SetActive(false);
-        OneShotCoroutine.PlayCoroutine(SelfActivate());
+        OneShotCoroutine.PlayCoroutine(SelfActivate(delay));
     }
 
-    private IEnumerator SelfActivate()
+    private IEnumerator SelfActivate(float value)
     {
-        yield return new WaitForSeconds(5.0f);
+        yield return new WaitForSeconds(value);
         gameObject.SetActive(true);
     }
 }

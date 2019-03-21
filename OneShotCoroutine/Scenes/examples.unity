@@ -112,6 +112,39 @@ NavMeshSettings:
     debug:
       m_Flags: 0
   m_NavMeshData: {fileID: 0}
+--- !u!1 &223544528
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 223544529}
+  m_Layer: 0
+  m_Name: Examples
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &223544529
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 223544528}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 811250432}
+  - {fileID: 931243135}
+  - {fileID: 1683175273}
+  m_Father: {fileID: 0}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &326049994
 GameObject:
   m_ObjectHideFlags: 0
@@ -231,7 +264,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &811250431
 GameObject:
@@ -242,6 +275,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 811250432}
+  - component: {fileID: 811250433}
   m_Layer: 0
   m_Name: Auto Activating Sphere
   m_TagString: Untagged
@@ -256,14 +290,32 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 811250431}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 2085612931}
-  m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_Father: {fileID: 223544529}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &811250433
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 811250431}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 084a20ddb555ce744961f0f4e7cebbf1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: 'The sphere deactivates itself at Start() and with OneShotCoroutine it re-activate
+    itself after X seconds.
+
+
+    The delay is passed as parameter through the coroutine.'
+  delay: 5
 --- !u!1 &931243134
 GameObject:
   m_ObjectHideFlags: 0
@@ -273,6 +325,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 931243135}
+  - component: {fileID: 931243136}
   m_Layer: 0
   m_Name: Loop Activating Cube
   m_TagString: Untagged
@@ -287,14 +340,28 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 931243134}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 1940873937}
-  m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_Father: {fileID: 223544529}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &931243136
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 931243134}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f1e3172a15c456f4ab95ff050f925816, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: The Cube toggles his activation status each second using OneShotCoroutine.
+  showOneShotCoroutine: 0
 --- !u!1 &1062125951
 GameObject:
   m_ObjectHideFlags: 0
@@ -394,6 +461,55 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 50, y: -30, z: 0}
+--- !u!1 &1683175272
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1683175273}
+  - component: {fileID: 1683175274}
+  m_Layer: 0
+  m_Name: Annoying Log
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1683175273
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683175272}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 223544529}
+  m_RootOrder: 2
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1683175274
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1683175272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7c21dd4515eeeb3489a228715b41961c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  notes: 'This example-code present how to reference and Stop a OneShotCoroutine.
+
+
+    A message is printed every 2 seconds in console. Press the choosen input key to
+    stop logs.'
+  stopCoroutineInput: 32
 --- !u!1 &1940873933
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,7 +522,6 @@ GameObject:
   - component: {fileID: 1940873936}
   - component: {fileID: 1940873935}
   - component: {fileID: 1940873934}
-  - component: {fileID: 1940873938}
   m_Layer: 0
   m_Name: Cube
   m_TagString: Untagged
@@ -486,20 +601,6 @@ Transform:
   m_Father: {fileID: 931243135}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1940873938
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1940873933}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f1e3172a15c456f4ab95ff050f925816, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  notes: The Cube toggle his activation status each second using OneShotCoroutine.
-  showOneShotCoroutine: 0
 --- !u!1 &2085612926
 GameObject:
   m_ObjectHideFlags: 0
@@ -512,7 +613,6 @@ GameObject:
   - component: {fileID: 2085612930}
   - component: {fileID: 2085612929}
   - component: {fileID: 2085612928}
-  - component: {fileID: 2085612927}
   m_Layer: 0
   m_Name: Sphere
   m_TagString: Untagged
@@ -520,20 +620,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &2085612927
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2085612926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 084a20ddb555ce744961f0f4e7cebbf1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  notes: The sphere deactivates itself at Start() and with OneShotCoroutine it re-activate
-    itself after 5 seconds.
 --- !u!23 &2085612928
 MeshRenderer:
   m_ObjectHideFlags: 0
