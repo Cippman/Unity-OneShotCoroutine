@@ -10,3 +10,8 @@ gameObjects so this is the "best" plug 'n' play solution I've found.
 ### Description:
 This repository comes with the main script OneShotCoroutine.cs two examples of in-code usage of this
 class and a scene.
+
+### How To Install:
+1) Download this repository as .zip
+2) Extract the files
+3) Drag 'n' drop the extracted folder in your unity project (where you prefer).
