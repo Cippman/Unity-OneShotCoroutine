@@ -13,3 +13,9 @@ Full free and open source.
 1) Download this repository as .zip
 2) Extract the files
 3) Drag 'n' drop the extracted folder in your unity project (where you prefer).
+
+### Links:
+Unity Forum: https://forum.unity.com/threads/one-shot-coroutine.648745/
+
+### Support:
+(if you'd like to) Patreon: https://www.patreon.com/AlessandroSalani
