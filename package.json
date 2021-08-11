@@ -1,5 +1,5 @@
 {
-  "name": "com.CippSharpCore.OSC",
+  "name": "com.cippsharpcore.osc",
   "version": "1.0.0",
   "diplayName": "CippSharp OneShotCoroutine",
   "description": "A solution to run a Coroutine once (ignoring GameObject active status).",
