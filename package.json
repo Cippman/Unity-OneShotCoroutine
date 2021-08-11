@@ -1,7 +1,7 @@
 {
   "name": "com.cippsharpcore.osc",
   "version": "1.0.0",
-  "diplayName": "CippSharp OneShotCoroutine",
+  "diplayName": "CippSharp.OneShotCoroutine",
   "description": "A solution to run a Coroutine once (ignoring GameObject active status).",
   "unity":"2019.4",
   "unityRelease":"10f1",
@@ -10,6 +10,7 @@
     "coroutine",
     "oneshot"
   ],
+  "license": "MIT",
   "author" : {
     "name" : "Alessandro Salani (Cippman)",
     "url" : "https://github.com/Cippman/Unity-OneShotCoroutine"
