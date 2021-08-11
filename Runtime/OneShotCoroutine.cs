@@ -7,7 +7,8 @@ using System.Collections;
 using UnityEngine;
 using Object = UnityEngine.Object;
 
-namespace CippSharp
+//OSC --> OneShotCoroutine
+namespace CippSharp.Core.OSC
 {
     #pragma warning disable 0429
     /// <summary>
@@ -20,7 +21,13 @@ namespace CippSharp
     {
         #region Debug
 
+        /// <summary>
+        /// Assign empty names to GameObjects created
+        /// </summary>
         public static bool useEmptyNames = true;
+        /// <summary>
+        /// Toggle the in editor use of hide flags
+        /// </summary>
         public static bool hiddenInHierarchy = true;
         
         #endregion
