@@ -16,7 +16,8 @@ As said this is a readonly solution so you cannot access all files this way.
 - Option 4 (vintage) use the old ".unitypackage"
 
 ### Links:
-Unity Forum: https://forum.unity.com/threads/one-shot-coroutine.648745/
+- [forum](https://forum.unity.com/threads/one-shot-coroutine.648745/)
+- [repo](https://github.com/Cippman/Unity-OneShotCoroutine.git)
 
 ### Support:
-(if you'd like to) Patreon: https://www.patreon.com/AlessandroSalani
+- [patreon](https://www.patreon.com/AlessandroSalani)
