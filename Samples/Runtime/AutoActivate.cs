@@ -1,11 +1,11 @@
 ﻿/*
  *  Author: Alessandro Salani (Cippman)
  */
-
+#if UNITY_EDITOR
 using System.Collections;
 using UnityEngine;
 
-namespace CippSharp.Core.OSC.Editor.Examples
+namespace CippSharp.Core.OSC.Samples
 {
     public class AutoActivate : MonoBehaviour
     {
@@ -27,3 +27,4 @@ namespace CippSharp.Core.OSC.Editor.Examples
         }
     }
 }
+#endif

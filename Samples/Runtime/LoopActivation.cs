@@ -1,10 +1,10 @@
 ﻿/*
  *  Author: Alessandro Salani (Cippman)
  */
-
+#if UNITY_EDITOR
 using UnityEngine;
 
-namespace CippSharp.Core.OSC.Editor.Examples
+namespace CippSharp.Core.OSC.Samples
 {
     public class LoopActivation : MonoBehaviour
     {
@@ -43,3 +43,4 @@ namespace CippSharp.Core.OSC.Editor.Examples
         }
     }
 }
+#endif
