@@ -4,6 +4,10 @@ OneShotCoroutine.cs
 ### Purpose: 
 The main purpose of OneShotCoroutine is to present a plug 'n' play solution to run coroutines of inactive gameObjects.
 
+### Notes:
+Consider to check also this newer [parallel version](https://github.com/ZiosTheCloudburster/CippSharpCoreCoroutines.git) 
+of running coroutines from inactive gameObjects and not only them.
+
 ### Contents:
 This repository comes with the main script OneShotCoroutine.cs and few examples of in-code usage of this
 class and a scene. Full free and open source.
@@ -20,4 +24,4 @@ As said this is a readonly solution so you cannot access all files this way.
 - [repo](https://github.com/Cippman/Unity-OneShotCoroutine.git)
 
 ### Support:
-- [patreon](https://www.patreon.com/AlessandroSalani)
+- [tip jar](https://www.amazon.it/photos/share/Gbg3FN0k6pjG6F5Ln3dqQEmwO0u4nSkNIButm3EGtit)
